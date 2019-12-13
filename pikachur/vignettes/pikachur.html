@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+<title>pikachur</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">pikachur</h1>
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Welcome to the <strong>pikachur</strong> package! This is an API client package, which retrieves information from the PokeAPI. For more information on the documentation, visit this link: <a href="https://pokeapi.co/">PokeAPI</a>. Whether you are a Pokemon lover or just curious about the franchise, this package is meant for you! Users will be able to explore various information on Pokemon (up to 807 Pokemon).</p>
+</div>
+<div id="step-by-step-guide" class="section level1">
+<h1>Step by Step Guide</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages(&quot;devtools&quot;)</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co"># install_github(acg2176/pikachur)</span></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw">library</span>(httr)</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">library</span>(dplyr)</a>
+<a class="sourceLine" id="cb1-5" data-line-number="5"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-6" data-line-number="6"><span class="co">#&gt; Attaching package: 'dplyr'</span></a>
+<a class="sourceLine" id="cb1-7" data-line-number="7"><span class="co">#&gt; The following objects are masked from 'package:stats':</span></a>
+<a class="sourceLine" id="cb1-8" data-line-number="8"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-9" data-line-number="9"><span class="co">#&gt;     filter, lag</span></a>
+<a class="sourceLine" id="cb1-10" data-line-number="10"><span class="co">#&gt; The following objects are masked from 'package:base':</span></a>
+<a class="sourceLine" id="cb1-11" data-line-number="11"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb1-12" data-line-number="12"><span class="co">#&gt;     intersect, setdiff, setequal, union</span></a>
+<a class="sourceLine" id="cb1-13" data-line-number="13"><span class="kw">library</span>(knitr)</a>
+<a class="sourceLine" id="cb1-14" data-line-number="14"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb1-15" data-line-number="15"><span class="kw">library</span>(pikachur)</a></code></pre></div>
+<p>4 functions are included: 1. pokedexr(): A Pokemon Encyclopedia 2. pokemaster(): Know your Pokemon Move and Type 3. catchemall(): Stats of your Pokemon Party 4. pokevolve(): Pokemon Evolution Chain</p>
+<div id="pokedexr" class="section level2">
+<h2>Pokedexr()</h2>
+<p>This function takes in 2 arguments: color and type of Pokemon. Users can find out which Pokemon match their search. The output is a data frame containing information on various base stats of all 807 Pokemon such as height, weight, special attack and defense stats. See <a href="https://bulbapedia.bulbagarden.net/wiki/Main_Page">Bulbapedia</a> for more details.</p>
+<p>Here are a few examples: 1. red, fire 2. blue, water 3. brown, flying 4. green, grass</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">pokedexr</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;fire&quot;</span>)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt;         Name Number Color Type_1 Type_2     Shape Weight_kg Height_m HP</span></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#&gt; 1 charmander      4   red   fire     NA   upright       8.5      0.6 39</span></a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#&gt; 2 charmeleon      5   red   fire     NA   upright      19.0      1.1 58</span></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt; 3  charizard      6   red flying   fire   upright      90.5      1.7 78</span></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; 4     magmar    126   red   fire     NA   upright      44.5      1.3 65</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; 5    flareon    136   red   fire     NA quadruped      25.0      0.9 65</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt;   Base_happiness Capture_rate Speed_stat Special_Defense_stat</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; 1             70           45         65                   50</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; 2             70           45         80                   65</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; 3             70           45        100                   85</span></a>
+<a class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#&gt; 4             70           45         93                   85</span></a>
+<a class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#&gt; 5             70           45         65                  110</span></a>
+<a class="sourceLine" id="cb2-14" data-line-number="14"><span class="co">#&gt;   Special_Attack_stat Defense_stat Attack_stat</span></a>
+<a class="sourceLine" id="cb2-15" data-line-number="15"><span class="co">#&gt; 1                  60           43          52</span></a>
+<a class="sourceLine" id="cb2-16" data-line-number="16"><span class="co">#&gt; 2                  80           58          64</span></a>
+<a class="sourceLine" id="cb2-17" data-line-number="17"><span class="co">#&gt; 3                 109           78          84</span></a>
+<a class="sourceLine" id="cb2-18" data-line-number="18"><span class="co">#&gt; 4                 100           57          95</span></a>
+<a class="sourceLine" id="cb2-19" data-line-number="19"><span class="co">#&gt; 5                  95           60         130</span></a></code></pre></div>
+</div>
+<div id="pokemaster" class="section level2">
+<h2>Pokemaster()</h2>
+<p>This function has 2 arguments: two types of Pokemon. Users can use this function to find out which Pokemon moves are weak against one type and strong against another. That way they will know which are the best moves to take in their next Pokemon battle! Other info include, power points, Accuracy and Power. See <a href="https://bulbapedia.bulbagarden.net/wiki/Main_Page">Bulbapedia</a> for more details.</p>
+<p>Examples: 1. grass, ground 2. normal, flying 3. fairy, ground 4. fire, grass 5. grass, fire</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">pokemaster</span>(<span class="st">&quot;grass&quot;</span>, <span class="st">&quot;ground&quot;</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;             Move   Type Damage_Class Strength_1 Strength_2 Weakness_1</span></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; 1    sludge-bomb poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; 2     poison-jab poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; 3   cross-poison poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; 4         sludge poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 5    poison-fang poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 6    poison-tail poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 7           acid poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-10" data-line-number="10"><span class="co">#&gt; 8           smog poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-11" data-line-number="11"><span class="co">#&gt; 9   poison-sting poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-12" data-line-number="12"><span class="co">#&gt; 10 poison-powder poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-13" data-line-number="13"><span class="co">#&gt; 11         toxic poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-14" data-line-number="14"><span class="co">#&gt; 12    poison-gas poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-15" data-line-number="15"><span class="co">#&gt; 13    acid-armor poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-16" data-line-number="16"><span class="co">#&gt; 14   gastro-acid poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-17" data-line-number="17"><span class="co">#&gt; 15  toxic-spikes poison     physical      grass      fairy     ground</span></a>
+<a class="sourceLine" id="cb3-18" data-line-number="18"><span class="co">#&gt;    Weakness_2 Accuracy PP Power</span></a>
+<a class="sourceLine" id="cb3-19" data-line-number="19"><span class="co">#&gt; 1     psychic      100 10    90</span></a>
+<a class="sourceLine" id="cb3-20" data-line-number="20"><span class="co">#&gt; 2     psychic      100 20    80</span></a>
+<a class="sourceLine" id="cb3-21" data-line-number="21"><span class="co">#&gt; 3     psychic      100 20    70</span></a>
+<a class="sourceLine" id="cb3-22" data-line-number="22"><span class="co">#&gt; 4     psychic      100 20    65</span></a>
+<a class="sourceLine" id="cb3-23" data-line-number="23"><span class="co">#&gt; 5     psychic      100 15    50</span></a>
+<a class="sourceLine" id="cb3-24" data-line-number="24"><span class="co">#&gt; 6     psychic      100 25    50</span></a>
+<a class="sourceLine" id="cb3-25" data-line-number="25"><span class="co">#&gt; 7     psychic      100 30    40</span></a>
+<a class="sourceLine" id="cb3-26" data-line-number="26"><span class="co">#&gt; 8     psychic       70 20    30</span></a>
+<a class="sourceLine" id="cb3-27" data-line-number="27"><span class="co">#&gt; 9     psychic      100 35    15</span></a>
+<a class="sourceLine" id="cb3-28" data-line-number="28"><span class="co">#&gt; 10    psychic       75 35     0</span></a>
+<a class="sourceLine" id="cb3-29" data-line-number="29"><span class="co">#&gt; 11    psychic       90 10     0</span></a>
+<a class="sourceLine" id="cb3-30" data-line-number="30"><span class="co">#&gt; 12    psychic       90 40     0</span></a>
+<a class="sourceLine" id="cb3-31" data-line-number="31"><span class="co">#&gt; 13    psychic     null 20     0</span></a>
+<a class="sourceLine" id="cb3-32" data-line-number="32"><span class="co">#&gt; 14    psychic      100 10     0</span></a>
+<a class="sourceLine" id="cb3-33" data-line-number="33"><span class="co">#&gt; 15    psychic     null 20     0</span></a></code></pre></div>
+</div>
+<div id="catchemall" class="section level2">
+<h2>Catchemall()</h2>
+<p>This function gets 6 arguments: 6 Pokemon in their Pokemon Party. A party consists of the 6 Pokemon a trainer can have while on the go. Users may choose from all 807 Pokemon to find out the stats of their Pokemon. See <a href="https://bulbapedia.bulbagarden.net/wiki/Main_Page">Bulbapedia</a> for more details.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">catchemall</span>(<span class="st">&quot;bulbasaur&quot;</span>, <span class="st">&quot;squirtle&quot;</span>, <span class="st">&quot;pikachu&quot;</span>, <span class="st">&quot;typhlosion&quot;</span>, <span class="st">&quot;zapdos&quot;</span>, <span class="st">&quot;vaporeon&quot;</span>)</a></code></pre></div>
+<p><img src="data:image/png;base64,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5syZ6Q9/+EP64x//mPz2J0fprrvuSrfddlt68YtfPOLsi0AasSIWBAc6wIEQQB1gaj8MueyyyyaO5T322CN961vfSm984xuT8DvNRyOUH/zgB2mnnXbqh6nGHCYxB8IEm6AXn9m17rrrpgMPPDDdd999OfHwq1/9avrhD3+Yz1gY/lWvelXWiOppQhOULXFafcaB0ID67IK0azqSDF/ykpfk4RZeeOE077zzpgcffDC9853vzMtkQzO3FlxwwfxbWcbNN9/crsPHOMGBljgQGlBLbBr7Rreuet3Yd5rLPRb/2pwBnll0iTTz02ekQ668Kv376afSC3feNS2//PLp+c9/fs54phV9+MMfzrk/RxxxRHZSr7HGGnMGiG/BgS5woGsCCEqgm3+s9P/+3/9LP/3pT9NGG200Ytef/OQn6YUvfGGS2TtW+tnPfpbmm2++tMIKK4x114HYfp75X5gWOuSw9O9ZfH9Ohe9C81AQaUQiX3fccceIsoyBOMGY5ITgQFdMsNNOOy07PcfDsd/+9rc5bFxvX87V8SbP/fznP0+//OUv6w07oZZVhU85sRKC9/tlL3vZiLKMsl18Bgc6zYGOCyCaz8MPP5xB2gGt/+lPfxp2TnwRtimfTz75ZPr9738/bBs//vnPf6aHHnooGaMR/eMf/0i/+tWv8rbVbYSj77///mGlBm9605vSpptuOrRZvX3N6e9//3vez7HNISg4EBxoHwc6boLdcsst+eEnWP7rv/4rHX300emUU04ZMpv233//nKVLm3nggQfSY489lk01GDbHHXdcPlNm2Lve9a5sMvFdHH/88RnHpsqGT3/60+l73/te4nA1xoknnph9HrJ+P/vZz+bjSc5zvDe84Q3p85//fHbA7r777qnRvp/73Ody6JrwedGLXpRNl3POOSebfdVjV78TkP0qqOoJb4mHZc6ErVyheebp+HupyrL4Pok50HEBBPbhG9/4Rtp6663T2muvnfFmpk+fnvbbb78smDysK6+8cs5VkSQnS1d05r3vfW+66qqr0ite8Yr0xBNP5GzexRdfPAHNuvbaa4cJoJtuuimBk7joootyucGXvvSl9OUvfzl94AMfyNnAjmUehBffT5Wa7Wu73/zmN9lB+5znPCfts88+OYHPWI1oSMN75v2NNmn78h+tPbu0wsBHHnlk1hTLQWh5e+65Z7rk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" /><!-- --></p>
+</div>
+<div id="pokevolve" class="section level2">
+<h2>Pokevolve()</h2>
+<p>This function gets 3 arguments: 3 Pokemon from all 807 Pokemon. The output is a data frame containing the evolution chain of each Pokemon. Pokemon that do not have an evolution chain will produce a warning. See <a href="https://bulbapedia.bulbagarden.net/wiki/Main_Page">Bulbapedia</a> for more details.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">pokevolve</span>(<span class="st">&quot;bulbasaur&quot;</span>, <span class="st">&quot;pikachu&quot;</span>, <span class="st">&quot;squirtle&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb5-11" data-line-number="11"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-12" data-line-number="12"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb5-14" data-line-number="14"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-15" data-line-number="15"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb5-17" data-line-number="17"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-18" data-line-number="18"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-19" data-line-number="19"></a>
+<a class="sourceLine" id="cb5-20" data-line-number="20"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-21" data-line-number="21"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb5-23" data-line-number="23"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-24" data-line-number="24"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-25" data-line-number="25"></a>
+<a class="sourceLine" id="cb5-26" data-line-number="26"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-27" data-line-number="27"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-28" data-line-number="28"></a>
+<a class="sourceLine" id="cb5-29" data-line-number="29"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-30" data-line-number="30"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-31" data-line-number="31"></a>
+<a class="sourceLine" id="cb5-32" data-line-number="32"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-33" data-line-number="33"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-34" data-line-number="34"></a>
+<a class="sourceLine" id="cb5-35" data-line-number="35"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-36" data-line-number="36"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-37" data-line-number="37"></a>
+<a class="sourceLine" id="cb5-38" data-line-number="38"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-39" data-line-number="39"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-40" data-line-number="40"></a>
+<a class="sourceLine" id="cb5-41" data-line-number="41"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-42" data-line-number="42"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-43" data-line-number="43"></a>
+<a class="sourceLine" id="cb5-44" data-line-number="44"><span class="co">#&gt; Warning in `[&lt;-.factor`(`*tmp*`, ri, value = 220L): invalid factor level, NA</span></a>
+<a class="sourceLine" id="cb5-45" data-line-number="45"><span class="co">#&gt; generated</span></a>
+<a class="sourceLine" id="cb5-46" data-line-number="46"><span class="co">#&gt;   Pokemon_1 Evolution_Trigger_1 Level_of_Evolution_1 Stone_to_Evolution_1</span></a>
+<a class="sourceLine" id="cb5-47" data-line-number="47"><span class="co">#&gt; 1 bulbasaur            level-up                   16                  N/A</span></a>
+<a class="sourceLine" id="cb5-48" data-line-number="48"><span class="co">#&gt; 2  squirtle            level-up                   16                  N/A</span></a>
+<a class="sourceLine" id="cb5-49" data-line-number="49"><span class="co">#&gt; 3     pichu            level-up                  N/A                  N/A</span></a>
+<a class="sourceLine" id="cb5-50" data-line-number="50"><span class="co">#&gt;   Known_Move_1 Min_Affection_1 Min_Beauty_1 Min_Happiness_1 Gender_1</span></a>
+<a class="sourceLine" id="cb5-51" data-line-number="51"><span class="co">#&gt; 1          N/A             N/A          N/A             N/A      N/A</span></a>
+<a class="sourceLine" id="cb5-52" data-line-number="52"><span class="co">#&gt; 2          N/A             N/A          N/A             N/A      N/A</span></a>
+<a class="sourceLine" id="cb5-53" data-line-number="53"><span class="co">#&gt; 3          N/A             N/A          N/A            &lt;NA&gt;      N/A</span></a>
+<a class="sourceLine" id="cb5-54" data-line-number="54"><span class="co">#&gt;   Needs_Rain_1 Party_type_1 Pokemon_2 Evolution_Trigger_2 Level_of_Evolution_2</span></a>
+<a class="sourceLine" id="cb5-55" data-line-number="55"><span class="co">#&gt; 1        FALSE          N/A   ivysaur            level-up                   32</span></a>
+<a class="sourceLine" id="cb5-56" data-line-number="56"><span class="co">#&gt; 2        FALSE          N/A wartortle            level-up                   36</span></a>
+<a class="sourceLine" id="cb5-57" data-line-number="57"><span class="co">#&gt; 3        FALSE          N/A   pikachu            use-item                  N/A</span></a>
+<a class="sourceLine" id="cb5-58" data-line-number="58"><span class="co">#&gt;   Stone_to_Evolution_2 Known_Move_2 Min_Affection_2 Min_Beauty_2</span></a>
+<a class="sourceLine" id="cb5-59" data-line-number="59"><span class="co">#&gt; 1                  N/A          N/A             N/A          N/A</span></a>
+<a class="sourceLine" id="cb5-60" data-line-number="60"><span class="co">#&gt; 2                  N/A          N/A             N/A          N/A</span></a>
+<a class="sourceLine" id="cb5-61" data-line-number="61"><span class="co">#&gt; 3        thunder-stone          N/A             N/A          N/A</span></a>
+<a class="sourceLine" id="cb5-62" data-line-number="62"><span class="co">#&gt;   Min_Happiness_2 Gender_2 Needs_Rain_2 Party_type_2 Pokemon_3</span></a>
+<a class="sourceLine" id="cb5-63" data-line-number="63"><span class="co">#&gt; 1             N/A      N/A        FALSE          N/A  venusaur</span></a>
+<a class="sourceLine" id="cb5-64" data-line-number="64"><span class="co">#&gt; 2             N/A      N/A        FALSE          N/A blastoise</span></a>
+<a class="sourceLine" id="cb5-65" data-line-number="65"><span class="co">#&gt; 3             N/A      N/A        FALSE          N/A    raichu</span></a></code></pre></div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

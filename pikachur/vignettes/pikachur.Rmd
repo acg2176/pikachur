@@ -1,0 +1,91 @@
+---
+title: "pikachur"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{pikachur}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+Welcome to the **pikachur** package! This is an API client package, which retrieves information from the PokeAPI. For more information on the documentation, visit this link: [PokeAPI](https://pokeapi.co/). Whether you are a Pokemon lover or just curious about the franchise, this package is meant for you! Users will be able to explore various information on Pokemon (up to 807 Pokemon).
+
+# Step by Step Guide
+```{r setup}
+# install.packages("devtools")
+# install_github(acg2176/pikachur)
+library(httr)
+library(dplyr)
+library(knitr)
+library(ggplot2)
+library(pikachur)
+```
+
+4 functions are included:
+1. pokedexr(): A Pokemon Encyclopedia
+2. pokemaster(): Know your Pokemon Move and Type
+3. catchemall(): Stats of your Pokemon Party
+4. pokevolve(): Pokemon Evolution Chain
+
+## Pokedexr()
+
+This function takes in 2 arguments: color and type of Pokemon. Users can find out which Pokemon match their search. The output is a data frame containing information on various base stats of all 807 Pokemon such as height, weight, special attack and defense stats. See [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page) for more details.
+
+Here are a few examples:
+1. red, fire
+2. blue, water
+3. brown, flying
+4. green, grass
+
+```{r}
+pokedexr("red", "fire")
+```
+
+
+## Pokemaster()
+
+This function has 2 arguments: two types of Pokemon. Users can use this function to find out which Pokemon moves are weak against one type and strong against another. That way they will know which are the best moves to take in their next Pokemon battle! Other info include, power points, Accuracy and Power. See [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page) for more details.
+
+Examples:
+1. grass, ground
+2. normal, flying
+3. fairy, ground
+4. fire, grass
+5. grass, fire
+
+
+```{r}
+pokemaster("grass", "ground")
+```
+
+
+
+## Catchemall()
+
+This function gets 6 arguments: 6 Pokemon in their Pokemon Party. A party consists of the 6 Pokemon a trainer can have while on the go. Users may choose from all 807 Pokemon to find out the stats of their Pokemon. See [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page) for more details.
+
+
+```{r}
+catchemall("bulbasaur", "squirtle", "pikachu", "typhlosion", "zapdos", "vaporeon")
+```
+
+
+
+## Pokevolve()
+
+
+This function gets 3 arguments: 3 Pokemon from all 807 Pokemon. The output is a data frame containing the evolution chain of each Pokemon. Pokemon that do not have an evolution chain will produce a warning. See [Bulbapedia](https://bulbapedia.bulbagarden.net/wiki/Main_Page) for more details.
+
+
+```{r, warning = FALSE}
+pokevolve("bulbasaur", "pikachu", "squirtle")
+```
+

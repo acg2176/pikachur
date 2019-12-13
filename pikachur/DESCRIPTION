@@ -1,0 +1,21 @@
+Package: pikachur
+Type: Package
+Title: A Pokemon API Client R Package
+Version: 0.1.0
+Author: person(“Montsie”, “Guerrero”, email = “acg2176@columbia.edu”, role = c(“aut”, “cre”))
+Maintainer: Montsie Guerrero <acg2176@columbia.edu>
+Description: This API Client R package contains 4 functions that can be used to display various information regarding basic information on Pokemon including type, stats, moves, and evolution chains in graph and data frame format.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2.9000
+Suggests: 
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
+Imports: 
+    tidyr,
+    httr,
+    dplyr,
+    knitr,
+    ggplot2
